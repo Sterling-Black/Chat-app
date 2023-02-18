@@ -136,9 +136,9 @@ function show(e){
     console.log(e.target.parentNode);
     let nm
     if(e.target.parentNode.classList[0]=="chat-values"){
-        nm = e.target.querySelector(".name").textContent
+        nm = e.target.parentNode.querySelector(".name").textContent
     }else if(e.target.parentNode.classList[1]=="chatts"){
-        nm = e.target.querySelector(".name").textContent;
+        nm = e.target.parentNode.querySelector(".name").textContent;
     }
 
 
