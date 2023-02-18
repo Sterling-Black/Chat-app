@@ -134,11 +134,13 @@ const minSize = 830;
 //Function that shows thechat container
 function show(e){
     console.log(e.target.parentNode);
-    let nm
+    let nm;
     if(e.target.parentNode.classList[0]=="chat-values"){
         nm = e.target.parentNode.querySelector(".name").textContent
     }else if(e.target.parentNode.classList[1]=="chatts"){
         nm = e.target.querySelector(".name").textContent;
+    }else{
+        nm = e.target.parentNode.parentNode.querySelector(".name").textContent;
     }
 
 
