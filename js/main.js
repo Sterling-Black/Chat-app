@@ -133,7 +133,15 @@ const minSize = 830;
 
 //Function that shows thechat container
 function show(e){
-    const nm = e.target.querySelector(".name").textContent;
+    console.log(e.target.parentNode);
+    let nm
+    if(e.target.parentNode.classList[0]=="chat-values"){
+        nm = e.target.querySelector(".name").textContent
+    }else if(e.target.parentNode.classList[1]=="chatts"){
+        nm = e.target.querySelector(".name").textContent;
+    }
+
+
     document.querySelector(".chat-container .prof-name").textContent = nm;
     if(!childClick){
         if(window.innerWidth<minSize){
@@ -144,6 +152,10 @@ function show(e){
     }
     childClick = false;
 }
+
+document.querySelectorAll(".chat-values p").forEach((chatItem)=>{
+    chatItem.addEventListener("click", show);
+});
 
 document.querySelectorAll(".chat-list .list-item").forEach((chatItem)=>{
     chatItem.addEventListener("click", show);
