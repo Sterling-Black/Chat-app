@@ -3,7 +3,6 @@ const convers = document.querySelector(".conversation");
 
 
 
-
 /*==================== DARK LIGHT THEME ====================*/
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
@@ -133,8 +132,9 @@ let childClick = false;
 const minSize = 830;
 
 //Function that shows thechat container
-function show(){
-    
+function show(e){
+    const nm = e.target.querySelector(".name").textContent;
+    document.querySelector(".chat-container .prof-name").textContent = nm;
     if(!childClick){
         if(window.innerWidth<minSize){
             console.log("click");   
