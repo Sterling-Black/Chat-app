@@ -1,0 +1,797 @@
+/*==================== GOOGLE FONTS ====================*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*==================== VARIABLES CSS ====================*/
+:root {
+    --header-height: 3rem;
+
+    /*========== Colors ==========*/
+    /* Change favorite color */
+    --hue-color: 230; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+
+    /* HSL color mode */
+    --first-color: hsl(var(--hue-color), 69%, 61%);
+    --first-color-second: hsl(var(--hue-color), 69%, 61%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+    --title-color: hsl(var(--hue-color), 8%, 15%);
+    --text-color: hsl(var(--hue-color), 8%, 45%);
+    --text-color-light: hsl(var(--hue-color), 8%, 65%);
+    --input-color: hsl(var(--hue-color), 70%, 96%);
+    --body-color: hsl(var(--hue-color), 60%, 99%);
+    --container-color: #fff;
+    --scrooll-bar-color: hsl(var(--hue-color), 12%, 90%);
+    --scrooll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+    --message-color-2: hsl(var(--hue-color), 92%, 80%);
+    --message-color-1: hsl(var(--hue-color), 12%, 80%);
+
+    /*========== Font and typography ==========*/
+    --body-font: "Poppins", sans-serif;
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.893rem;
+    --smaller-font-size: 0.75rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-thin: 200;
+
+    /*========== Margenes Bottom ==========*/
+    /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
+    --mb-0-25: 0.25rem;
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+    --z-xmodal: 1050;
+}
+
+/* Font size for large devices */
+@media screen and (min-width: 968px) {
+    :root {
+        --big-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: 0.813rem;
+    }
+}
+
+/*========== Variables Dark theme ==========*/
+body.dark-theme {
+    --first-color-second: hsl(var(--hue-color), 30%, 8%);
+    --title-color: hsl(var(--hue-color), 8%, 95%);
+    --text-color: hsl(var(--hue-color), 8%, 75%);
+    --input-color: hsl(var(--hue-color), 29%, 16%);
+    --body-color: hsl(var(--hue-color), 28%, 12%);
+    --container-color: hsl(var(--hue-color), 29%, 16%);
+    --scrooll-bar-color: hsl(var(--hue-color), 12%, 48%);
+    --scrooll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+    --message-color-2: hsl(var(--hue-color), 12%, 36%);
+    --message-color-1: hsl(var(--hue-color), 45%, 25%);
+}
+
+/*========== Button Dark/Light ==========*/
+.nav__btns {
+    display: flex;
+    align-items: center;
+}
+
+.change-theme,i {
+    font-size: 1.25rem;
+    color: var(--title-color);
+    margin-right: var(--mb-1);
+    cursor: pointer;
+}
+
+.change-theme:hover,i:hover {
+    color: var(--first-color);
+}
+
+/*==================== BASE ====================*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 0 var(--header-height) 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+}
+
+/* main{
+    /* overflow: hidden; */
+    /* height: 100vh;
+    display: flex; */
+    */
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+section{
+    /* display: inline-block; */
+    width: auto;
+    height: 100%;
+}
+
+/*==================== NAV ====================*/
+.nav {
+    max-width: 968px;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo,
+.nav__toggle {
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    font-size: var(--h1-font-size);
+}
+
+/* .logo:hover {
+    /* color: var(--first-color); 
+} */
+
+.nav__toggle {
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.nav__toggle:hover {
+    color: var(--first-color);
+}
+
+/*================ CHAT LIST CONATINER =============*/
+.chat-list{
+    width: 30%;/*35px*/
+    padding: var(--mb-1) var(--mb-1-5) 0;
+    padding-bottom: 0;
+    min-width: 400px;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    /* position: relative; */
+}
+
+.list-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-content{
+    background-color: var(--input-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem 0.25rem;
+    margin-top: var(--mb-1);
+}
+
+.chat-search{
+    width: 100%;
+    background-color: var(--input-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    border: none;
+    outline: none;
+    padding: 0.25rem 0.5rem 0.5rem 0;
+}
+
+.list-items{
+    margin-top: var(--mb-1-5);
+    overflow-y: scroll;
+    /* height: 80%; */
+    flex: 1 1 auto;
+}
+
+/*========== CHATS LIST SCROLL BAR ==========*/
+.list-items::-webkit-scrollbar {
+    width: 0.3rem;
+    /* background-color: var(--scrooll-bar-color); */
+    border-radius: 0.5rem;
+}
+
+.list-items::-webkit-scrollbar-thumb {
+    background-color: var(--scrooll-thumb-color);
+    border-radius: 0.5rem;
+}
+
+.list-items::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color-light);
+}
+
+/*============ CHAT ITEMS ==========*/
+
+.list-item{
+    border-radius: 15px;
+    padding: var(--mb-0-5) 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+.list-item:hover{
+    background-color: var(--input-color);
+}
+
+.list-item:target{
+    background-color: var(--input-color);
+}
+
+.chat-img{
+    width: 40px;
+    height: 40px;
+    margin: 4px 10px 2px 2px;
+    display: inline-block;
+}
+
+.chat-img:hover{
+    cursor: pointer;
+}
+
+.chat-values, .set-value{
+    margin: 2px 0px;
+    /* width: 90%; */
+    display: inline-block;
+    flex: 1 1 auto;
+    /* z-index: 1; */
+}
+
+.empty{
+    font-size: var(--h3-font-size);
+    padding: 25px 15px;
+    width: 100%;
+    text-align: center;
+    color: var(--scrooll-thumb-color);
+}
+
+
+.chat-values p{
+    position: relative;
+}
+
+.name{
+    font-weight: var(--font-medium);
+    color: var(--title-color);
+}
+
+.time{
+    font-size: var(--smaller-font-size);
+}
+
+.right{
+    position: absolute;
+    right: var(--mb-0-5);
+}
+
+.last-msg{
+    font-size: var(--smaller-font-size);
+    font-weight: 200;
+}
+
+.num{
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--first-color);
+    font-size: var(--small-font-size);
+    color: #fff;
+}
+
+/*============= CHAT CONTAINER =============*/
+
+.chat-container{
+
+    display: inline-block;
+    width: 70%;/*65px*/
+    height: 100%;
+    /* position: fixed;
+    top: 0; */
+    border-left: var(--scrooll-bar-color) solid 1px;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    transition: none;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.chat-header{
+    padding: var(--mb-1) var(--mb-0-5) ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.prof-detail:hover{
+    cursor: pointer
+}
+
+p span{
+    text-align: center;
+}
+
+.chat-profile{
+    display: flex;
+    align-items: center;
+}
+
+.prof-name{
+    display: block;
+}
+
+.back-chat{
+    display: none;
+}
+
+/*=========== Conversations ==========*/
+.conversation{
+    border-top: var(--scrooll-bar-color) solid 1px;
+    background-color: var(--body-color);
+    overflow-y: scroll;
+    background-image: url("../image/BG2.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1 1 auto;
+}
+
+/*======= Message Editing =======*/
+.msg{
+    position: relative;
+    width: 350px;
+    min-width: 50px;
+    padding: 10px;
+    margin: 10px 15px;
+    border-radius: 15px;
+    display: block;
+}
+.msg p{
+    color: var(--title-color);
+    font-size: var(--normal-font-size);
+    font-weight: 300;
+}
+
+.msg-1{
+    margin-right: 50px;
+    background-color: var(--message-color-1);
+    color: var(--text-color);
+}
+
+.msg-1 .tail{
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: var(--mb-1-5);
+    height: var(--mb-2);
+    background-color: var(--message-color-1);
+    border-bottom-left-radius: var(--mb-1-5);
+}
+
+.msg-1 .time{
+    display: block;
+    text-align: right;
+}
+
+.msg-2-p{
+    display: flex; 
+    align-items: flex-end;
+}
+
+.msg-2{
+    margin-left: 50px;
+    background-color: var(--message-color-2);
+    color: var(--text-color);
+    margin-left: auto;
+}
+
+.msg-2 .tail{
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: var(--mb-1-5);
+    height: var(--mb-2);
+    background-color: var(--message-color-2);
+    border-bottom-right-radius: var(--mb-1-5);
+}
+
+
+
+
+/*========== CHATS SCROLL BAR ==========*/
+.conversation::-webkit-scrollbar {
+    width: 0.8rem;
+    background-color: var(--scrooll-bar-color);
+    border-radius: 0.5rem;
+}
+
+.conversation::-webkit-scrollbar-thumb {
+    background-color: var(--scrooll-thumb-color);
+    border-radius: 0.5rem;
+}
+
+.conversation::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color-light);
+    width: 10px;
+}
+
+/*========= Message Input field =========*/
+.input-msg{
+    width: 100%;
+    padding: var(--mb-1);
+    background-color: var(--input-color);
+    display: grid;
+    grid-template-columns: 1fr 30fr 1fr;
+    align-items: center;
+    grid-gap: 5px;
+    justify-content: center;
+    flex: 0 1 0px;
+}
+
+.input-msg button,.input-msg input, .send, .upload{
+    border: none;
+    background: none;
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    outline: none;
+    padding: 0.25rem 0.5rem 0.5rem 0;
+    position: relative;
+}
+
+.mic:active{
+    border-radius: 50%;
+    /* width: 50px;
+    height: 25px; */
+    background-color: #fff;
+    text-align: center;
+}
+
+.audio-recorder{
+    width: 100%;
+    padding: var(--mb-1) var(--mb-3);
+    background-color: var(--input-color);
+    position: absolute;
+    right: -100%;
+    bottom: var(--mb-1 + 0.5rem);
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.record{
+    display: flex;
+    justify-content: space-between;
+}
+
+.send{
+    position: absolute;
+    right: -60px;
+    background-color: var(--input-color);
+    bottom: var(--mb-1 + 0.5rem);
+    z-index: var(--z-modal);
+    transition: all 0.2s ease-in-out;
+}
+
+.lrg{
+    font-size: var(--h1-font-size);
+}
+
+.visibleS{
+    right: 20px;
+}
+
+.media{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: all 5s ease-in-out;
+}
+
+.not-visible{
+    display: none;
+    /* position: fixed;
+    right: -100px; */
+}
+
+/*========= Modals ==========*/
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.modal-content{
+    position: relative;
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.modal-img{
+    width: 350px;
+    height: 350px;
+}
+
+.modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5em;
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+.modal-inner{
+    margin: 20px 10px;
+}
+
+.call{
+    display: flex;
+    justify-content: space-between;
+}
+
+.absolute{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* Active Modal */
+.active-modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+/*========== CALL CONTAINER ========*/
+.call-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: -100%;
+    display: flex;
+    background-color: var(--container-color);
+    align-items: end;
+    /* justify-content: center; */
+    /* padding: 0 1rem; */
+    z-index: var(--z-xmodal);
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    transition: 0.3s;
+}
+
+.show-call{
+    bottom: 0;
+}
+
+.call-content{
+    position: relative;
+    width: 100%;
+    display: grid;
+    /* grid-template-rows: 10fr 1fr; */
+}
+
+.call-area{
+    text-align: center;
+    padding: 200px 100px;
+}
+
+.call-icons{
+    text-align: center;
+    padding: 50px 100px;
+    background-color: var(--first-color);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.call-icons i{
+    font-size: var(--h2-font-size);
+    margin: 0 25px;
+    padding: 0 5px;
+}
+
+.call-icons i:hover{
+    color: var(--body-color);
+}
+
+.call-img{
+    width: 100px;
+    height: 100px;  
+}
+
+.call-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5em;
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+.icon-active{
+    background-color: var(--container-color);
+    border-radius: 50%;
+}
+
+.call-icons i.icon-active:hover{
+    color: var(--first-color);
+}
+
+/*========== Settings ============*/
+.settings{
+    background-color: var(--body-color);
+    position: fixed;
+    right: -100%;
+    top: 0;
+    z-index: var(--z-fixed);
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+    padding: 10px 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.show-setting{
+    right: 0px;
+    top: 0;
+}
+
+.my-profile{
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: var(--scrooll-thumb-color) solid 2px;
+}
+
+.my-img-container{
+    display: inline-block;
+    position: relative;
+}
+
+.camera{
+    position: absolute;
+    bottom: 4px;
+    right: 10px;
+    background-color: var(--first-color-alt);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.camera i{
+    font-size: var(--h3-font-size);
+    margin-right: 0;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    position: relative;
+    color: #fff;
+}
+
+
+.my-img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.my-img:hover{
+    cursor: pointer;
+}
+
+.set-item{
+    padding: 30px 15px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+/*========== Media query =========*/
+
+@media screen and (max-width: 830px){
+    .chat-container{
+        position: fixed;
+        right: -830px;
+        top: 0;
+        z-index: var(--z-tooltip);
+        transition: all 0.3s ease-in-out;
+    }
+    .chat-list{
+        width: 100%;
+    }
+    .back-chat{
+        display: block
+    }
+    .show-chat{
+        background-color: var(--body-color);
+        right: 0px;
+        top: 0;
+        width: 100%;
+    }
+    .modal-content{
+        width: 350px;
+        text-align: center;
+    }
+    .modal-img{
+        width: 150px;
+        height: 150px;
+    }
+    .call-icons{
+        display: flex;
+        justify-content: space-between;
+    }
+    .call-icons i{
+        margin: 0;
+    }
+}
