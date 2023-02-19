@@ -484,6 +484,7 @@ p span{
     grid-gap: 5px;
     justify-content: center;
     flex: 0 1 0px;
+    position: relative;
 }
 
 .input-msg button,.input-msg input, .send, .upload{
@@ -507,10 +508,11 @@ p span{
 
 .audio-recorder{
     width: 100%;
-    padding: var(--mb-1) var(--mb-3);
+    padding: var(--mb-0-25) var(--mb-3) var(--mb-1-5);
     background-color: var(--input-color);
     position: absolute;
     right: -100%;
+    top: 0;
     bottom: var(--mb-1 + 0.5rem);
     text-align: center;
     transition: all 0.2s ease-in-out;
@@ -536,6 +538,10 @@ p span{
 
 .visibleS{
     right: 20px;
+}
+
+.mic-visible{
+    right: 0px;
 }
 
 .media{
@@ -637,27 +643,34 @@ p span{
 .call-content{
     position: relative;
     width: 100%;
-    display: grid;
+    height: 100%;
+    /* display: grid; */
     /* grid-template-rows: 10fr 1fr; */
+
 }
 
 .call-area{
     text-align: center;
-    padding: 200px 100px;
+    padding: 10% 0;
+    height: 80%;
 }
 
 .call-icons{
     text-align: center;
-    padding: 50px 100px;
+    padding: 3% 0;
     background-color: var(--first-color);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    height: 20%;
+    display: flex;
+    align-items: center;
 }
 
 .call-icons i{
     font-size: var(--h2-font-size);
-    margin: 0 25px;
+    margin: 0 10%;
     padding: 0 5px;
+    /* flex: 1; */
 }
 
 .call-icons i:hover{
@@ -676,6 +689,7 @@ p span{
     font-size: 1.5em;
     color: var(--first-color);
     cursor: pointer;
+    display: none;
 }
 
 .icon-active{

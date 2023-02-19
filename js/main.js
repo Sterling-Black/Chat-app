@@ -143,16 +143,17 @@ function show(e){
         nm = e.target.parentNode.parentNode.querySelector(".name").textContent;
     }
 
-
-    document.querySelector(".chat-container .prof-name").textContent = nm;
-    if(!childClick){
-        if(window.innerWidth<minSize){
-            console.log("click");   
-            convers.scrollTop = convers.scrollHeight;
-            document.querySelector(".chat-container").classList.add("show-chat");
+    if(!e.target.classList.contains("chat-img")){
+        document.querySelector(".chat-container .prof-name").textContent = nm;
+        if(!childClick){
+            if(window.innerWidth<minSize){
+                console.log("click");   
+                convers.scrollTop = convers.scrollHeight;
+                document.querySelector(".chat-container").classList.add("show-chat");
+            }
         }
+        childClick = false;
     }
-    childClick = false;
 }
 
 document.querySelectorAll(".chat-values p").forEach((chatItem)=>{
@@ -198,15 +199,15 @@ const recorder = document.querySelector(".audio-recorder");
 const mic = document.querySelector(".mic");
 
 document.querySelector(".mic").addEventListener("click",()=>{
-    recorder.classList.add("visibleS");
+    recorder.classList.add("mic-visible");
 });
 
 document.querySelector(".trash").addEventListener("click",()=>{
-    recorder.classList.remove("visibleS");
+    recorder.classList.remove("mic-visible");
 });
 
 document.querySelector(".send-rec").addEventListener("click",()=>{
-    recorder.classList.remove("visibleS");
+    recorder.classList.remove("mic-visible");
 });
 
 
@@ -217,10 +218,17 @@ const modalContent = document.querySelector(".modal-content");
 const closen = document.querySelector(".modal-close");
 
 function showModal(e){
-    const nm = e.target.nextElementSibling.querySelector(".name").textContent;
+    console.log(e.target.parentNode);
+    let nm ;
+    if(e.target.classList.contains("img-prof")){
+        nm = e.target.parentNode.parentNode.querySelector(".name").textContent;
+    }else{
+        nm = e.target.parentNode.querySelector(".name").textContent
+    }
     childClick=true;
     modal.querySelector(".modal-name").textContent = nm;
     modal.classList.add("active-modal");
+    // document.querySelector(".prof-name").textContent = nm;
 }
 
 document.querySelectorAll(".chat-img").forEach((chatImg)=>{
