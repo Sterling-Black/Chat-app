@@ -799,6 +799,11 @@ p span{
         top: 0;
         width: 100%;
     }
+    .msg{
+        /* width: 50%; */
+        width: fit-content;
+        max-width: 70%;
+    }
     .modal-content{
         width: 350px;
         text-align: center;
