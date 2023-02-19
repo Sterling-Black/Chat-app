@@ -653,6 +653,7 @@ p span{
     text-align: center;
     padding: 10% 0;
     height: 80%;
+    position: relative;
 }
 
 .call-icons{
@@ -689,7 +690,6 @@ p span{
     font-size: 1.5em;
     color: var(--first-color);
     cursor: pointer;
-    display: none;
 }
 
 .icon-active{
