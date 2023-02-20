@@ -11,7 +11,9 @@
     <!--==================== CSS ========================-->
     <link rel="stylesheet" href="css/style.css">
     <!--==================== FONTAWESOME ================-->
-    <script src="https://kit.fontawesome.com/80c8ba4521.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/80c8ba4521.js" crossorigin="anonymous"></script> -->
+    <script src="js/all.min.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     
@@ -292,22 +294,56 @@
                         <span class="time">4:43pm</span>
                     </div>
                 </div>
+                <!-- <div class="">
+                    <div class="msg msg-1">
+                        <div class="tail"></div>
+                        <div class="audio-msg">
+                            <div class="audio-person">
+                                <img src="image/user.png" class="audio-img" alt="">
+                                <i class="fa-solid fa-microphone "></i>
+                            </div>
+                            <div class="audio-player">
+                                <div class="player">
+                                    <i class="fa-solid fa-play"></i> -->
+                                    <!-- <i class="fa-solid fa-pause"></i> -->
+                                <!-- </div>
+                                <div class="play-length">
+                                    <div class="bar">
+                                        <div class="fill">
+                                        </div>
+                                        <div class="hold"></div>
+                                    </div>
+                                    <span class="time audio-lth">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="time">4:43pm</span>
+                    </div>
+                </div> -->
                 
     
             </div>
             <div class="input-msg">
                 <button class="emoji"><i class="uil uil-grin"></i></button>
                 <input type="text" class="type-msg" placeholder="Message">
-                <div class="media">
-                    <input type="file" id="upload" hidden/>
-                    <label for="upload" class="upload"><i class="uil uil-paperclip"></i></label>
-                    <button class="mic"><i class="uil uil-microphone"></i></button>
+                <div>
+                    <div class="media">
+                        <input type="file" id="upload" hidden/>
+                        <label for="upload" class="upload"><i class="uil uil-paperclip"></i></label>
+                        <button class="mic"><i class="uil uil-microphone"></i></button>
+                    </div>
+                    <button class="send-box">
+                        <!-- <i class="uil uil-message"></i> -->
+                        <i class="uil uil-message send"></i>
+                    </button>
                 </div>
-                <i class="uil uil-message lrg send"></i>
                 <div class="audio-recorder">
-                    <span>0:00</span>
+                    <span id="rec-time">0:00</span>
                     <div class="record">
                         <i class="uil uil-trash-alt trash"></i>
+                        <div class="recording">
+                            Recording...
+                        </div>
                         <i class="uil uil-message send-rec"></i>
                     </div>
                 </div>

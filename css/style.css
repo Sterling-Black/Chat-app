@@ -24,6 +24,7 @@
     --scrooll-thumb-color: hsl(var(--hue-color), 12%, 80%);
     --message-color-2: hsl(var(--hue-color), 92%, 80%);
     --message-color-1: hsl(var(--hue-color), 12%, 80%);
+    --bar-color: var(--first-color);
 
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
@@ -85,6 +86,7 @@ body.dark-theme {
     --scrooll-thumb-color: hsl(var(--hue-color), 12%, 36%);
     --message-color-2: hsl(var(--hue-color), 12%, 36%);
     --message-color-1: hsl(var(--hue-color), 45%, 25%);
+    --bar-color: #3de2ff;
 }
 
 /*========== Button Dark/Light ==========*/
@@ -124,19 +126,13 @@ body {
     overflow: hidden;
     height: 100vh;
     display: flex;
-    -webkit-touch-callout: none;
+    /* -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none; */
 }
-
-/* main{
-    /* overflow: hidden; */
-    /* height: 100vh;
-    display: flex; */
-    */
 
 h1,
 h2,
@@ -399,7 +395,7 @@ p span{
     position: relative;
     width: 350px;
     min-width: 50px;
-    padding: 10px;
+    padding: 10px 10px 0;
     margin: 10px 15px;
     border-radius: 15px;
     display: block;
@@ -426,10 +422,16 @@ p span{
     border-bottom-left-radius: var(--mb-1-5);
 }
 
-.msg-1 .time{
+.msg .time{
     display: block;
     text-align: right;
 }
+
+/* .msg-2 .time{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+} */
 
 .msg-2-p{
     display: flex; 
@@ -453,7 +455,96 @@ p span{
     border-bottom-right-radius: var(--mb-1-5);
 }
 
+.audio-msg{
+    display: inline-block;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-gap: 20px;
+}
 
+.audio-person{
+    position: relative;
+}
+
+.audio-img{
+    width: 40px;
+    height: 40px;
+}
+
+.fa-microphone{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    color: var(--bar-color);
+}
+
+.audio-msg i:hover{
+    color: var(--bar-color);
+}
+
+.audio-player{
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.play-length{
+    /* width: 80%; */
+    position: relative;
+}
+
+.bar{
+    width: 100%;
+    height: 4px;
+    background-color: var(--first-color-lighter);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.bar:hover{
+    cursor: pointer;
+}
+
+.fill{
+    width: 0%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--bar-color);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.hold{
+    width: 12px;
+    height: 12px;    
+    background-color: var(--bar-color);
+    border-radius: 50%;
+    transition: all 0.05s ease-in-out;
+    position: relative;
+    right: 6px;
+}
+
+.hold:hover,.hold:focus{
+    width: 18px;
+    height: 18px; 
+    cursor: pointer; 
+}
+
+.player{
+    display: grid;
+    align-items: center;
+    /* width: 20%; */
+}
+
+.audio-lth{
+    position: absolute;
+    bottom: -30px;
+    color: var(--title-color);
+}
 
 
 /*========== CHATS SCROLL BAR ==========*/
@@ -481,10 +572,16 @@ p span{
     display: grid;
     grid-template-columns: 1fr 30fr 1fr;
     align-items: center;
-    grid-gap: 5px;
+    grid-gap: 10px;
     justify-content: center;
-    flex: 0 1 0px;
+    /* flex: 0 1 0px; */
     position: relative;
+}
+
+.input-msg i.uil-grin{
+    display: flex;
+    justify-content: center;
+    margin: 0;
 }
 
 .input-msg button,.input-msg input, .send, .upload{
@@ -496,6 +593,10 @@ p span{
     outline: none;
     padding: 0.25rem 0.5rem 0.5rem 0;
     position: relative;
+}
+
+.type-msg{
+    margin-right: var(--mb-0-25);
 }
 
 .mic:active{
@@ -516,6 +617,12 @@ p span{
     bottom: var(--mb-1 + 0.5rem);
     text-align: center;
     transition: all 0.2s ease-in-out;
+    display: none;
+}
+
+#rec-time{
+    position: relative;
+    top: 5px;
 }
 
 .record{
@@ -523,26 +630,39 @@ p span{
     justify-content: space-between;
 }
 
-.send{
-    position: absolute;
-    right: -60px;
-    background-color: var(--input-color);
-    bottom: var(--mb-1 + 0.5rem);
-    z-index: var(--z-modal);
-    transition: all 0.2s ease-in-out;
+.recording{
+    display: inline-block;
+    color: #f32400;
 }
 
-.lrg{
-    font-size: var(--h1-font-size);
+.send-box{
+    /* position: absolute;
+    right: -60px; */
+    display: none;
+    /* opacity: 0; */
+    /* transition: all 0.2s ease-in-out; */
+    margin-left: var(--mb-0-25);
+}
+
+.send{
+    /* background-color: var(--input-color); */
+    /* bottom: var(--mb-1 + 0.5rem); */
+    /* z-index: var(--z-modal); */
+    font-size: var(--h2-font-size);
+    color: var(--title-color);
 }
 
 .visibleS{
-    right: 20px;
+    display: inline-block;
+    /* opacity: 1; */
+    /* right: 20px; */
 }
 
 .mic-visible{
+    display: inline-block;
     right: 0px;
 }
+
 
 .media{
     display: grid;
@@ -780,15 +900,16 @@ p span{
 /*========== Media query =========*/
 
 @media screen and (max-width: 830px){
+    .chat-list{
+        width: 100%;
+        min-width: 200px;
+    }
     .chat-container{
         position: fixed;
         right: -830px;
         top: 0;
         z-index: var(--z-tooltip);
         transition: all 0.3s ease-in-out;
-    }
-    .chat-list{
-        width: 100%;
     }
     .back-chat{
         display: block
