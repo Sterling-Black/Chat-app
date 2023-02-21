@@ -1,5 +1,8 @@
 const convers = document.querySelector(".conversation");
 
+const messages = [];
+const chats = [], BA = [], draft=[];
+
 
 
 
@@ -139,22 +142,54 @@ const minSize = 830;
 
 //Function that shows thechat container
 function show(e){
-    console.log(e.target.parentNode);
-    let nm;
-    if(e.target.parentNode.classList[0]=="chat-values"){
-        nm = e.target.parentNode.querySelector(".name").textContent
-    }else if(e.target.parentNode.classList[1]=="chatts"){
-        nm = e.target.querySelector(".name").textContent;
-    }else{
-        nm = e.target.parentNode.parentNode.querySelector(".name").textContent;
-    }
+    convers.scrollTop = convers.scrollHeight;
+
+    const chat = e.target.closest(".list-item");
+    const index = chat.id;
+    const chatConvers = messages[index];
+    draft[convers.id] = inputMsg.value;
+    const chatDraft = draft[index];
+    const nm = chat.querySelector(".name").textContent;
+    
+    console.log(nm,index);
 
     if(!e.target.classList.contains("chat-img")){
+
+        // CHANGE NAME OF CHAT
         document.querySelector(".chat-container .prof-name").textContent = nm;
+
+
+        document.querySelector(".audio h3").textContent = nm;
+
+
+        // CHANGE THE WHOLE CONVERSATION
+        convers.innerHTML = chatConvers;
+
+        // CHANGE CONVERSATION ID
+        convers.id = index;
+
+        // ADD THE DRAFT
+        inputMsg.value=chatDraft
+
+        if(chatDraft==""){
+            // MAKE SEND BUTTON DISAPPEAR
+            send.classList.remove("visibleS");
+            media.classList.remove("not-visible");
+        }else{
+            // MAKE SEND BUTTON TO APPEAR
+            send.classList.add("visibleS");
+            media.classList.add("not-visible");
+        }
+
+        const cover =  document.querySelector(".covering")
+        if(cover){
+            cover.style.display = 'none';
+            cover.remove();
+        }
+
         if(!childClick){
             if(window.innerWidth<minSize){
-                console.log("click");   
-                convers.scrollTop = convers.scrollHeight;
+                // convers.scrollTop = convers.scrollHeight;
                 document.querySelector(".chat-container").classList.add("show-chat");
             }
         }
@@ -162,12 +197,17 @@ function show(e){
     }
 }
 
-document.querySelectorAll(".chat-values p").forEach((chatItem)=>{
-    chatItem.addEventListener("click", show);
-});
+// document.querySelectorAll(".chat-values p").forEach((chatItem)=>{
+//     chatItem.addEventListener("click", show);
+// });
 
+let index = 0;
 document.querySelectorAll(".chat-list .list-item").forEach((chatItem)=>{
-    // convers.scrollTop = convers.scrollHeight;
+    index++;
+    chatItem.id = index;
+    messages[index] = ``;
+    draft[index] = ``;
+    chats.push(chatItem.outerHTML);
     chatItem.addEventListener("click", show);
 });
 
@@ -175,9 +215,20 @@ document.querySelectorAll(".chat-list .list-item").forEach((chatItem)=>{
 
 
 document.querySelector(".back-btn").addEventListener("click", ()=>{
+
+        if(inputMsg.value){
+            const index = convers.id;
+            draft[index] = inputMsg.value;
+            inputMsg.value = "";
+            send.classList.remove("visibleS");
+            media.classList.remove("not-visible");
+        }
+
         document.querySelector(".chat-container").classList.remove("show-chat");
         document.querySelector(".audio-recorder").classList.remove("visibleS");
 });
+
+
 
 
 
@@ -189,9 +240,12 @@ const media = document.querySelector(".media");
 
 
 document.querySelector(".type-msg").addEventListener("keyup",checkInputValue);
+// document.querySelector(".type-msg").addEventListener("keydown",checkInputValue);
+
 
 
 function checkInputValue(){
+
     if(document.querySelector(".type-msg").value){
        send.classList.add("visibleS");
        media.classList.add("not-visible");
@@ -202,7 +256,38 @@ function checkInputValue(){
 }
 
 // Sedimg message
-send.addEventListener("click",sendMsg);
+send.addEventListener("click",()=>{
+    const typedMsg = inputMsg.value;
+    if(typedMsg&&typedMsg.trim().length>0){
+
+        inputMsg.value = "";
+
+        send.classList.remove("visibleS");
+        media.classList.remove("not-visible");
+    
+    
+        const newMsg = document.createElement("p");
+        newMsg.textContent = typedMsg;
+    
+        createMsg(newMsg);
+
+
+
+        const store = `{
+            "blue": {
+                "red": [
+                    "green":"asd",
+                    "asdasd":"asda"
+                ]
+            }
+        }`;
+
+       
+        
+    
+
+    }
+});
 
 
 //Message structure
@@ -214,9 +299,10 @@ send.addEventListener("click",sendMsg);
             <span class="time">4:43pm</span>
         </div>
     </div> */}
+
+
 function sendMsg(){
-    const typedMsg = inputMsg.value;
-    inputMsg.value = "";
+    
 
     const date = new Date();
     var hours = date.getHours();
@@ -239,8 +325,7 @@ function sendMsg(){
     const tail = document.createElement("div");
     tail.classList.add("tail");
 
-    const newMsg = document.createElement("p");
-    newMsg.textContent = typedMsg;
+    
 
     const timeBox = document.createElement("span");
     timeBox.classList.add("time");
@@ -419,50 +504,50 @@ function asignAudio(audioUrl,you){
     k++;
     
     if(you){
-        sendAudio(newAudioMsg);
+        createMsg(newAudioMsg);
     }
 }
 
-function sendAudio(newAudioMsg){
+// function createMsg(Msg){
    
+//     const newMsg = Msg;
 
-    const date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    const time = hours + ':' + minutes + ' ' + ampm;
+//     const date = new Date();
+//     var hours = date.getHours();
+//     var minutes = date.getMinutes();
+//     var ampm = hours >= 12 ? 'pm' : 'am';
+//     hours = hours % 12;
+//     hours = hours ? hours : 12; // the hour '0' should be '12'
+//     minutes = minutes < 10 ? '0'+minutes : minutes;
+//     const time = hours + ':' + minutes + ' ' + ampm;
 
 
 
-    const msgContainer = document.createElement("div");
-    msgContainer.classList.add("pos-r-msg");
+//     const msgContainer = document.createElement("div");
+//     msgContainer.classList.add("pos-r-msg");
 
-    const msgBox = document.createElement("div");
-    msgBox.classList.add("msg");
-    msgBox.classList.add("msg-2");
+//     const msgBox = document.createElement("div");
+//     msgBox.classList.add("msg");
+//     msgBox.classList.add("msg-2");
 
-    const tail = document.createElement("div");
-    tail.classList.add("tail");
+//     const tail = document.createElement("div");
+//     tail.classList.add("tail");
 
-    const newMsg = newAudioMsg;
 
-    const timeBox = document.createElement("span");
-    timeBox.classList.add("time");
-    timeBox.textContent = time;
+//     const timeBox = document.createElement("span");
+//     timeBox.classList.add("time");
+//     timeBox.textContent = time;
     
-    msgBox.appendChild(tail);
-    msgBox.appendChild(newMsg);
-    msgBox.appendChild(timeBox);
-    msgContainer.appendChild(msgBox);
-    convers.appendChild(msgContainer);
+//     msgBox.appendChild(tail);
+//     msgBox.appendChild(newMsg);
+//     msgBox.appendChild(timeBox);
+//     msgContainer.appendChild(msgBox);
+//     convers.appendChild(msgContainer);
 
-    convers.scrollTop = convers.scrollHeight;
-}
+//     convers.scrollTop = convers.scrollHeight;
+// }
 
-asignAudio("sound/wrong.mp3",true);
+// asignAudio("sound/wrong.mp3",true);
 
 function getTime(sec){
     let min ;
@@ -481,20 +566,17 @@ function getTime(sec){
 
 
 
-
-
-
 //Activate / deactive microphone 
 const recorderBox = document.querySelector(".audio-recorder");
 const mic = document.querySelector(".mic");
 const recTime = document.getElementById("rec-time");
-// let chunks = [];
 
 
 const recordButton = document.getElementById('recordButton');
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let recorder, sendRec=false;
 
+//Recording Event
 mic.addEventListener('click',() => {
 
         const mediaStream = navigator.mediaDevices.getUserMedia({ audio: true });
@@ -518,11 +600,7 @@ mic.addEventListener('click',() => {
                     const blob = new Blob(chunks, { type: 'audio/mp3' });
                     // Do something with the audio blob, like upload it to a server
                     if(sendRec){
-                        // const audio = document.createElement("audio");
                         const audioUrl = URL.createObjectURL(blob);
-                        // audio.src = audioUrl;
-                        // audio.controls = true;
-                        // convers.appendChild(audio);
                         asignAudio(audioUrl,true);
                         convers.scrollTop = convers.scrollHeight;
                     }
@@ -531,18 +609,13 @@ mic.addEventListener('click',() => {
 
                 recorder.start();
                 let time=0;
-                let min=0;
                 const timing = setInterval( async ()=>{
                     time++;
-                    (time%60==0)?min++:min;
-                    const sec = time%60;
-                    // console.log(min+":"+sec);
                     recTime.innerText = getTime(time);
-                    // sec<10?(min+":0"+sec):(min+":"+sec);
                 },1000);
                 recorderBox.classList.add("mic-visible");
             }
-        })
+        }).catch(err=>console.log(err));
 });
 
 
@@ -560,8 +633,135 @@ document.querySelector(".send-rec").addEventListener("click", async ()=>{
 });
 
 
+//uplaoding file
+
+function uploadFile(e){
+    const type = e.target.files[0].type;
+    let size = e.target.files[0].size;
+    const name = e.target.files[0].name;
+    let ext = name.split(".")[1];
+
+    if(ext.length>4){
+        ext = ext.slice(0,3)+"..";
+    }
+    let unit = "B"
+
+    // kilobyte range
+    if(size>1024&&size<(1024*1024)){
+        unit = "KB";
+        size = Math.floor(size/(1024));
+    // Megabyte Range
+    }else if(size>(1024*1024)){
+        unit = "MB";
+        size = Math.floor(size/(1024*1024))
+    }
 
 
+    const url =	URL.createObjectURL(e.target.files[0]);
+    
+    if(type.includes("image")){
+        const img = document.createElement('img');
+        img.src = url;
+        img.classList.add("img-msg");
+        createMsg(img);
+    }else{
+        let newFile = document.createElement("div");
+        newFile.classList.add("file-container");
+
+        console.log(size);
+        const [orderType, extension] = type.split("/");
+        console.log(name,orderType,extension);
+
+        newFile.innerHTML = `<div class="file">
+                                <div class="top-left"></div>
+                                <h4 class="ext">${ext.toUpperCase()}</h4>
+                            </div>
+                            <div class="file-info">
+                                <p>${name}</p>
+                                <span>`+size+``+unit+"     "+orderType+`</span>
+                            </div>`;
+        
+
+        
+
+        createMsg(newFile);
+    }
+
+}
+
+function createMsg(value){
+
+    // GET CONVERSATION ID
+    const index = convers.id;
+
+    // let changeDay, day;
+
+    console.log(value.outerHTML);
+
+    // GET VALUE OF MESSAGE
+    const newMsg = value;
+
+    const date = new Date();
+
+    
+    
+    var month = date.getMonth()
+    var day = date.getDay();
+    var dayNum = date.getDate();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    
+    
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    const time = hours + ':' + minutes + ' ' + ampm;
+    
+    // if(BA){
+
+    // }
+    // BA.push({
+    //     month: month,
+    //     day: day,
+    //     dayNum: dayNum,
+    //     time: time
+    // });
+
+
+
+
+
+    // BA.push();
+
+
+
+    const msgContainer = document.createElement("div");
+    msgContainer.classList.add("pos-r-msg");
+
+    const msgBox = document.createElement("div");
+    msgBox.classList.add("msg");
+    msgBox.classList.add("msg-2");
+
+    const tail = document.createElement("div");
+    tail.classList.add("tail");
+
+
+    const timeBox = document.createElement("span");
+    timeBox.classList.add("time");
+    timeBox.textContent = time;
+    
+    msgBox.appendChild(tail);
+    msgBox.appendChild(newMsg);
+    msgBox.appendChild(timeBox);
+    msgContainer.appendChild(msgBox);
+    convers.appendChild(msgContainer);
+
+    convers.scrollTop = convers.scrollHeight;
+
+    // STORE MESSAGE IN MESSAGES ARRAY
+    messages[index]=convers.innerHTML;
+}
 
 
 
@@ -621,15 +821,27 @@ const btns = document.querySelectorAll(".call-btns");
 
 phones.forEach((phone)=>{
     phone.addEventListener("click",()=>{
-        phones.forEach((phone2)=>phone2.classList.add("icon-active"));
-        callContainer.classList.add("show-call");
+        if(phone.closest(".modal")){
+            const name = phone.closest(".modal").querySelector(".modal-name").textContent;
+            callContainer.querySelector("h3.name").textContent = name;
+            callContainer.classList.add("show-call");
+        }else{
+            phones.forEach((phone2)=>phone2.classList.add("icon-active"));
+            callContainer.classList.add("show-call");
+        }
     });
 })
 
 vids.forEach((vid)=>{
     vid.addEventListener("click",()=>{
-        vids.forEach((vid2)=>vid2.classList.add("icon-active"));
-        callContainer.classList.add("show-call");
+        if(vid.closest(".modal")){
+            const name = vid.closest(".modal").querySelector(".modal-name").textContent;
+            callContainer.querySelector("h3.name").textContent = name;
+            callContainer.classList.add("show-call");
+        }else{
+            vids.forEach((vid2)=>vid2.classList.add("icon-active"));
+            callContainer.classList.add("show-call");
+        }
     });
 })
 

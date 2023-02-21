@@ -25,6 +25,9 @@
     --message-color-2: hsl(var(--hue-color), 92%, 80%);
     --message-color-1: hsl(var(--hue-color), 12%, 80%);
     --bar-color: var(--first-color);
+    --msg-2-selc: hsl(var(--hue-color), 92%, 70%);
+    --msg-1-selc: hsl(var(--hue-color), 18%, 68%);
+
 
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
@@ -87,6 +90,8 @@ body.dark-theme {
     --message-color-2: hsl(var(--hue-color), 12%, 36%);
     --message-color-1: hsl(var(--hue-color), 45%, 25%);
     --bar-color: #3de2ff;
+    --msg-2-selc: hsl(var(--hue-color), 17%, 43%);
+    --msg-1-selc: hsl(var(--hue-color), 29%, 36%);
 }
 
 /*========== Button Dark/Light ==========*/
@@ -399,6 +404,7 @@ p span{
     margin: 10px 15px;
     border-radius: 15px;
     display: block;
+    transform-style: preserve-3d;
 }
 .msg p{
     color: var(--title-color);
@@ -417,9 +423,11 @@ p span{
     top: 0;
     left: -10px;
     width: var(--mb-1-5);
-    height: var(--mb-2);
+    height: var(--mb-1);
     background-color: var(--message-color-1);
     border-bottom-left-radius: var(--mb-1-5);
+    transform: translateZ(-10px);
+
 }
 
 .msg .time{
@@ -450,9 +458,14 @@ p span{
     top: 0;
     right: -10px;
     width: var(--mb-1-5);
-    height: var(--mb-2);
+    height: var(--mb-1);
     background-color: var(--message-color-2);
     border-bottom-right-radius: var(--mb-1-5);
+    transform: translateZ(-10px)
+}
+
+.img-msg{
+    border-radius: 19px;
 }
 
 .audio-msg{
@@ -467,8 +480,9 @@ p span{
 }
 
 .audio-img{
-    width: 40px;
-    height: 40px;
+    width: 90%;
+    height: 90%;
+    /* min-height: 5%; */
 }
 
 .fa-microphone{
@@ -546,10 +560,67 @@ p span{
     color: var(--title-color);
 }
 
+/* File Type Of Message Styling */
+.file-container{
+    border-radius: 10px;
+    padding: 15px 5px 10px;
+}
+
+.msg-2 .file-container{
+    background-color: var(--msg-2-selc);
+}
+
+.msg-1 .file-container{
+    background-color: var(--msg-1-selc);
+}
+
+.file-container{
+    display: flex;
+}
+
+.file{
+    background-color: var(--container-color);
+    width: 19%;
+    min-width: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.file:hover{
+    cursor: pointer;
+}
+
+.file-info span{
+    font-size: var(--smaller-font-size);
+    display: block;
+    /* width: 1oo; */
+}
+
+.top-left{
+    position: absolute;
+    top: 0;
+    border-top: 6px solid  var(--msg-1-selc);
+    border-left: 6px solid var(--msg-1-selc);
+    border-bottom: 6px solid var(--first-color-lighter);
+    border-right: 6px solid  var(--first-color-lighter);
+}
+
+.msg-2 .top-left{
+    border-top: 6px solid  var(--msg-2-selc);
+    border-left: 6px solid var(--msg-2-selc);
+}
+
+.ext{
+    text-align: center;
+    flex: 1;
+}
+
 
 /*========== CHATS SCROLL BAR ==========*/
 .conversation::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 0.5rem;
     background-color: var(--scrooll-bar-color);
     border-radius: 0.5rem;
 }
@@ -561,7 +632,7 @@ p span{
 
 .conversation::-webkit-scrollbar-thumb:hover {
     background-color: var(--text-color-light);
-    width: 10px;
+    /* width: 10px; */
 }
 
 /*========= Message Input field =========*/
@@ -578,13 +649,7 @@ p span{
     position: relative;
 }
 
-.input-msg i.uil-grin{
-    display: flex;
-    justify-content: center;
-    margin: 0;
-}
-
-.input-msg button,.input-msg input, .send, .upload{
+.input-msg button,.input-msg textarea, .send, .upload{
     border: none;
     background: none;
     color: var(--text-color);
@@ -595,17 +660,32 @@ p span{
     position: relative;
 }
 
+textarea{
+    height: 66%;
+    resize: none;
+}
+
 .type-msg{
     margin-right: var(--mb-0-25);
+    min-width: 30%;
+}
+
+.input-msg i, .emoji{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 10px;
 }
 
 .mic:active{
     border-radius: 50%;
-    /* width: 50px;
-    height: 25px; */
     background-color: #fff;
     text-align: center;
 }
+
+/* .mic, .upload{
+    padding: 10px;
+} */
 
 .audio-recorder{
     width: 100%;
@@ -642,15 +722,17 @@ p span{
     /* opacity: 0; */
     /* transition: all 0.2s ease-in-out; */
     margin-left: var(--mb-0-25);
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-.send{
-    /* background-color: var(--input-color); */
-    /* bottom: var(--mb-1 + 0.5rem); */
-    /* z-index: var(--z-modal); */
-    font-size: var(--h2-font-size);
+
+
+i.send{
+    font-size: var(--h3-font-size);
     color: var(--title-color);
 }
+
 
 .visibleS{
     display: inline-block;
@@ -674,6 +756,20 @@ p span{
     display: none;
     /* position: fixed;
     right: -100px; */
+}
+
+.covering{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--container-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--h2-font-size);
+    /* padding: 0 70px; */
 }
 
 /*========= Modals ==========*/
@@ -770,15 +866,21 @@ p span{
 }
 
 .call-area{
-    text-align: center;
     padding: 10% 0;
     height: 80%;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio h3{
+    text-align: center;
 }
 
 .call-icons{
     text-align: center;
-    padding: 3% 0;
+    padding: 3% 10%;
     background-color: var(--first-color);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -922,8 +1024,11 @@ p span{
     }
     .msg{
         /* width: 50%; */
-        width: fit-content;
+        /* width: fit-content; */
         max-width: 70%;
+    }
+    .fa-microphone{
+        font-size: var(--h3-font-size);
     }
     .modal-content{
         width: 350px;
@@ -939,5 +1044,13 @@ p span{
     }
     .call-icons i{
         margin: 0;
+    }
+}
+
+/* Very Small Devices */
+
+@media screen and (max-width: 400){
+    .fa-microphone{
+        font-size: var(--smaller-font-size);
     }
 }

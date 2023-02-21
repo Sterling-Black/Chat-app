@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!--==================== FONTAWESOME ================-->
     <!-- <script src="https://kit.fontawesome.com/80c8ba4521.js" crossorigin="anonymous"></script> -->
-    <script src="js/all.min.js" crossorigin="anonymous"></script>
+    <script src="js/all.min.js" ></script>
     
 </head>
 <body>
@@ -155,16 +155,16 @@
             </div>
             <div class="conversation">
                 <!--message to the left-->
-                <div>
+                <!-- <div>
                     <div class="msg msg-1">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor.
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor sit😂.
@@ -181,9 +181,9 @@
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor 🤔<br>sit amet consectetur adipisicing elit.
@@ -210,9 +210,9 @@
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -241,9 +241,9 @@
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum.
@@ -259,9 +259,9 @@
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -282,9 +282,9 @@
                         </p>
                         <span class="time">4:40am</span>
                     </div>
-                </div>
+                </div> -->
                 <!--message to the right-->
-                <div class="pos-r-msg">
+                <!-- <div class="pos-r-msg">
                     <div class="msg msg-2">
                         <div class="tail"></div>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -294,6 +294,45 @@
                         <span class="time">4:43pm</span>
                     </div>
                 </div>
+                <div class="pos-r-msg">
+                    <div class="msg msg-2">
+                        <div class="tail"></div>
+                        <img src="image/BG.jpg" class="img-msg">
+                        <span class="time">4:43pm</span>
+                    </div>
+                </div> -->
+                <!-- <div class="">
+                    <div class="msg msg-1">
+                        <div class="tail"></div>
+                        <div class="file-container">
+                            <div class="file">
+                                <div class="top-left"></div>
+                                <p class="ext">ext</p>
+                            </div>
+                            <div class="file-info">
+                                <h3>name</h3>
+                                <span>extention</span>
+                            </div>
+                        </div>
+                        <span class="time">4:43pm</span>
+                    </div>
+                </div> -->
+                <!-- <div class="pos-r-msg">
+                    <div class="msg msg-2">
+                        <div class="tail"></div>
+                        <div class="file-container">
+                            <div class="file">
+                                <div class="top-left"></div>
+                                <p class="ext">ext</p>
+                            </div>
+                            <div class="file-info">
+                                <h3>name</h3>
+                                <span>extention</span>
+                            </div>
+                        </div>
+                        <span class="time">4:43pm</span>
+                    </div> 
+                </div>-->
                 <!-- <div class="">
                     <div class="msg msg-1">
                         <div class="tail"></div>
@@ -325,11 +364,11 @@
             </div>
             <div class="input-msg">
                 <button class="emoji"><i class="uil uil-grin"></i></button>
-                <input type="text" class="type-msg" placeholder="Message">
+                <textarea type="text" class="type-msg" placeholder="Message"></textarea>
                 <div>
                     <div class="media">
-                        <input type="file" id="upload" hidden/>
-                        <label for="upload" class="upload"><i class="uil uil-paperclip"></i></label>
+                        <input type="file" id="upload" onchange="uploadFile(event)" hidden/>
+                        <label for="upload" class="upload" ><i class="uil uil-paperclip"></i></label>
                         <button class="mic"><i class="uil uil-microphone"></i></button>
                     </div>
                     <button class="send-box">
@@ -347,6 +386,9 @@
                         <i class="uil uil-message send-rec"></i>
                     </div>
                 </div>
+            </div>
+            <div class="covering">
+                Click on a chat to start a conversation. 😁
             </div>
         </div>
     </section>
@@ -412,10 +454,11 @@
                 <i class="uil uil-times call-close"></i>
                 <div class="audio">
                     <img src="image/user1.png" class="call-img">
+                    <h3 class="name">name</h3>
                 </div>
-                <div class="video">
-                    <!-- <video src="" class=""></video> -->
-                </div>
+                <!-- <div class="video">
+                    <video src="" class=""></video>
+                </div> -->
             </div>
             <div class="call-icons">
                 <!-- <i class="uil uil-volume-mute"></i> -->
