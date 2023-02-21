@@ -67,7 +67,6 @@ themeButton.addEventListener("click", () => {
 // When searching for a chat
 const chatSearch = document.querySelector(".chat-search");
 const names = document.querySelectorAll(".chat-values .name");
-const originalChats = document.querySelector(".chatts").innerHTML;
 const chatList = document.querySelector(".chatts");
 
 const empty = document.createElement("div");
@@ -84,6 +83,7 @@ chatSearch.addEventListener("keyup",(e)=>{
             const nm = name.textContent.toUpperCase();
 
             // comprism
+            console.log(name.parentNode.parentNode.parentNode);
             if(nm.includes(srch)){
                 showNames.push(name.parentNode.parentNode.parentNode);//add the 3rd parent element (list-item)
             }
@@ -197,10 +197,9 @@ function show(e){
     }
 }
 
-// document.querySelectorAll(".chat-values p").forEach((chatItem)=>{
-//     chatItem.addEventListener("click", show);
-// });
 
+
+//GIVING ID'S TO EACH LIST ITEM
 let index = 0;
 document.querySelectorAll(".chat-list .list-item").forEach((chatItem)=>{
     index++;
@@ -211,6 +210,8 @@ document.querySelectorAll(".chat-list .list-item").forEach((chatItem)=>{
     chatItem.addEventListener("click", show);
 });
 
+//declaring orginal chats here so that the id's can be maintained
+const originalChats = document.querySelector(".chatts").innerHTML;
 
 
 
